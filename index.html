@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/index.61d3354a.css" rel="stylesheet">
+    <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
+    <script src="/index.54632f9a.js" defer=""></script>
+</head>
+
+<body>
+    <div class="flex flex-col h-screen overflow-hidden text-white">
+        <header class="w-full text-center border-b border-gray-300 p-4 bg-[#1F2234] font-semibold">Portón Eléctrico
+        </header>
+        <main class="flex-1 overflow-y-hidden bg-[#1F2234]">
+            <div x-data="" class="grid grid-cols-1 gap-1 content-center pt-16">
+                <template x-for="name in $store.control.controles">
+                    <div class="text-center">
+                        <button class="btn btn-lg w-60 m-4" @click="$store.control.connectToDevice(name)">
+                            <img src="/car.ee026fca.svg" alt="My Happy SVG" height="30" width="30">
+                            <span x-text="name"></span>
+                        </button>
+                        <button class="btn btn-error" x-show="$store.control.edit" @click="$store.control.borrar(name)">Borrar</button>
+                    </div>
+
+                </template>
+            </div>
+
+            <dialog id="my_modal_1" class="modal">
+                <form method="dialog" class="modal-box bg-[#673AB7]">
+                    <h2 class="font-semibold text-lg pb-3">Ingresar contraseña</h2>
+                    <input x-data="" type="text" x-model="$store.control.password" placeholder="Contraseña" class="input input-bordered w-full max-w-xs text-black">
+                    <div class="modal-action">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button x-data="" class="btn" @click="$store.control.saveControl()">Guardar</button>
+                    </div>
+                </form>
+            </dialog>
+
+        </main>
+        <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+
+        <footer class="w-full text-center border-t border-gray-300 p-0 bg-gray-300 font-semibold">
+            <div class="grid grid-cols-2 gap-0.5">
+                <button x-data="" @click="$store.control.getDevices()" class="bg-[#673AB7] p-4 active:bg-[#402372]">Nuevo</button>
+                <button x-data="" class="bg-[#673AB7] p-4 active:bg-[#402372]" @click="$store.control.edit = !$store.control.edit">Editar</button>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
